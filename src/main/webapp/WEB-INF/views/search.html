@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>List Product</title>
+</head>
+<body>
+<h1 style="text-align: center">List Products</h1>
+<div align="center">
+    <h3><a href="/list">Trang chủ</a></h3>
+    <form action="/list/search" method="get">
+        <input type="search" name="p" placeholder="search product">
+        <input type="submit" value="search">
+    </form>
+</div>
+<h3 style="text-align: center"><a href="/list/create">Create new product</a></h3>
+<table border="1" align="center" style="text-align: center">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="p:${listSearch}">
+        <tr>
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.price}"></td>
+            <td th:text="${p.description}"></td>
+            <td><a th:href="@{/list/edit(id=${p.id})}">Edit</a></td>
+            <td><a th:href="@{/list/delete(id=${p.id})}">Del</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
